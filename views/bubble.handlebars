@@ -1,0 +1,54 @@
+<div class="text-center">
+  <h2>{{title}}</h2>
+  <p>{{content}}</p>
+  <p>Created by {{user.name}} on {{format_date date_created}}</p>
+  
+  <!-- Edit Button (only for the user who created the bubble) -->
+  {{#if user_owns_bubble}}
+    <button class="btn btn-primary" id="edit-bubble-btn">Edit</button>
+  {{/if}}
+
+  <div id="comments" class="card p-2 bg-light border-0">
+   {{#each comments}}
+   <div class="border-bottom border-dark">
+    <p class="card-body font-weight-bold mb-0">{{content}}</p>
+    <p class="card-body  mb-0">{{user.name}} on {{format_date date_created}}</p>
+   </div>
+   {{/each}}
+  </div>
+
+  <form id="comment-form">
+    <span class="input-group-text"></span>
+    <textarea class="form-control bg-light border-0" id="comment-content" placeholder="Add a comment"></textarea>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
+
+  <!-- Modal for editing bubble -->
+  <div class="modal fade" id="editBubbleModal" tabindex="-1" role="dialog" aria-labelledby="editBubbleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editBubbleModalLabel">Edit Bubble</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="edit-bubble-form">
+            <div class="form-group">
+              <label for="edit-bubble-title">Title</label>
+              <input type="text" class="form-control" id="edit-bubble-title" value="{{title}}">
+            </div>
+            <div class="form-group">
+              <label for="edit-bubble-content">Content</label>
+              <textarea class="form-control" id="edit-bubble-content">{{content}}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/bubbleEdit.js"></script>
+<script src="/js/bubbleComments.js"></script>

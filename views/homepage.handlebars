@@ -1,0 +1,16 @@
+<!-- Loop over each object in the projects array -->
+{{#each bubbles as |bubble| }}
+<div class="row mb-4 bubble">
+  <div class="col-md-5">
+    <h3>
+      <a href="/bubble/{{bubble.id}}">{{bubble.title}}</a>
+    </h3>
+    <p>Created by {{bubble.user.name}} on {{format_date bubble.date_created}}</p>
+  </div>
+  <div class="col-md-7">
+    <p>
+      {{bubble.content}}
+    </p>
+  </div>
+</div>
+{{/each}}
